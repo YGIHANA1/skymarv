@@ -1,0 +1,30 @@
+{
+  "name": "c.v",
+  "version": "1.0.0",
+  "description": "myCvBackend",
+  "main": "index.js",
+  "engines": {
+    "node": "12.16.0"
+  },
+  "scripts": {
+    "test": "index",
+    "dev": "nodemon -r dotenv/config ./src/server.js",
+    "debug": "nodemon --inspect -r dotenv/config .src/server.jss",
+    "start": "node ./src/server.js"
+  },
+  "author": "yannick",
+  "license": "ISC",
+  "dependencies": {
+    "cloudinary": "^1.23.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-list-endpoints": "^5.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.10.7",
+    "multer": "^1.4.2",
+    "nodemon": "^2.0.6",
+    "query-to-mongo": "^0.10.1",
+    "validator": "^13.1.17"
+  }
+}
