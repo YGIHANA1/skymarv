@@ -27,9 +27,9 @@ const server = express()
 const port = process.env.PORT || 7000
 
 const staticFolderPath = join(__dirname, "public")
- if(process.env.NODE_ENV==="production"){
+//  if(process.env.NODE_ENV==="production"){
   server.use(express.static("public"))
-   }
+  //  }
 server.use(express.json())
 
 server.use(cors())
