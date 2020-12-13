@@ -26,8 +26,10 @@ const server = express()
 
 const port = process.env.PORT || 7000
 
-const staticFolderPath = join(__dirname, ".../public")
-server.use(express.static(staticFolderPath))
+const staticFolderPath = join(__dirname, "public")
+ if(process.env.NODE_ENV==="production"){
+  server.use(express.static("public"))
+   }
 server.use(express.json())
 
 server.use(cors())
@@ -40,10 +42,10 @@ server.use(badRequestHandler)
 server.use(notFoundHandler)
 server.use(genericErrorHandler)
 
+
 console.log(listEndpoints(server))
 
-mongoose
-  .connect(process.env.MONGOBD_URI || "mongodb://localhost:27017/Solocaps", {
+mongoose.connect(process.env.MONGOBD_URI || "mongodb://localhost:27017/Solocaps", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })

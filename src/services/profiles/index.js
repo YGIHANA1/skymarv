@@ -16,10 +16,7 @@ const upload = multer({ storage: storage }).single('file')
 profilesRouter.get("/post", async (req, res, next) => {
   try {
     const query = q2m(req.query)
-    const profiles = await ProfileModels.find(query.criteria, query.options.fields)
-      .skip(query.options.skip)
-      .limit(query.options.limit)
-      .sort(query.options.sort)
+    const profiles = await ProfileModels.find(query.criteria)
   
     res.send({
       data: profiles,
@@ -47,7 +44,7 @@ profilesRouter.post("/post", async (req, res, next) => {
     const { text } = await newProfile.save()
 
     res.status(201).send(text)
-   const newImage= new ProfileModels(req.file)
+   const newImage= new ProfileModels(req.file.buffer.toJSON)
    const Image= await newImage.save()
  return res.status(201).send(Image)
 
