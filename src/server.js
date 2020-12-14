@@ -16,7 +16,7 @@ const {
     badRequestHandler,
     genericErrorHandler,
   } = require("./errorHandlers")
-const whitelist=["http://localhost:3000","http://localhost:7000",]  
+const whitelist=["http://localhost:3000","http://localhost:7000","https://git.heroku.com/marveries.git "]  
 const corsOptions={
   origin:function(callback,origin){
     console.log("** origin request " + origin)
