@@ -9,9 +9,7 @@
   },
   "scripts": {
     "test": "index",
-    "build":"cd mytry && npm run build",
-    "install-server":"cd mytry && npm install",
-    "heroku-postbuild":"npm run install-mytry && npm run build",
+    "heroku-postbuild":"cd mytry && npm install && npm install --only=dev --no-shrinkwrap && npm run build",
     "dev": "nodemon -r dotenv/config ./src/server.js",
     "debug": "nodemon --inspect -r dotenv/config .src/server.jss",
     "start": "node ./src/server.js"
