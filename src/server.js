@@ -28,7 +28,8 @@ const port = process.env.PORT || 7000
 const staticFolderPath = join(__dirname, ".../public")
 server.use(express.static(staticFolderPath))
 server.use(express.json())
-
+if (process.env.NODE_ENV === "production")
+server.use(express.static("client/builds"))
 server.use(cors())
 
 server.use("/users", usersRouter)
