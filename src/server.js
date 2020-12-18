@@ -5,7 +5,7 @@ const listEndpoints = require("express-list-endpoints")
 const mongoose = require("mongoose")
 var multer = require('multer')
 // const jwt = require('jsonwebtoken');
-const bodyParser= require("body-parser")
+
 const comicsRouter=require("./services/comics")
 const usersRouter = require("./services/users")
 const profilesRouter = require("./services/profiles")
@@ -16,19 +16,8 @@ const {
     badRequestHandler,
     genericErrorHandler,
   } = require("./errorHandlers")
-const whitelist=["http://localhost:3000","http://localhost:7000","https://git.heroku.com/marveries.git "]  
-const corsOptions={
-  origin:function(callback,origin){
-    console.log("** origin request " + origin)
-    if(whitelist.indexOf(origin) !== -1 || !origin){
-      console.log("origin accepted")
-      callback(null,true)
-    }else{
-console.log("origin rejected")
-callback(new error("no allowed by CORS"))
-    }
-  }
-}
+  
+
 const server = express()
 
 // const older_token= jwt.sign({
@@ -36,18 +25,11 @@ const server = express()
 // }, 'secret', { expiresIn: '1h' });
 
 const port = process.env.PORT || 7000
-
-const staticFolderPath = join(__dirname, "public")
-  if(process.env.NODE_ENV==="production"){
-  server.use(express.static("public"))
-  server.get("*",function(req,res){
-res.sendFile(path.join(__dirname, "public","index.html"))
-  }) 
-}
+const staticFolderPath = join(__dirname, ".../public")
+server.use(express.static(staticFolderPath))
 server.use(express.json())
-server.use(bodyParser.json())
-server.use(bodyParser.urlencoded({extended:true}))
-server.use(cors(corsOptions))
+
+server.use(cors())
 
 server.use("/users", usersRouter)
 server.use("/comics", comicsRouter)
@@ -57,10 +39,10 @@ server.use(badRequestHandler)
 server.use(notFoundHandler)
 server.use(genericErrorHandler)
 
-
 console.log(listEndpoints(server))
 
-mongoose.connect(process.env.MONGOBD_URI || "mongodb://localhost:27017/Solocaps", {
+mongoose
+  .connect(process.env.MONGOBD_URI || "mongodb://localhost:27017/Solocaps", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
