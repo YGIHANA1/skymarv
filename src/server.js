@@ -25,7 +25,7 @@ const server = express()
 // }, 'secret', { expiresIn: '1h' });
 const whitelist=["http://localhost:3000","http://localhost:7000","https://git.heroku.com/marverixapp.git"]
 const corsOptions={
-  origin:function(callback,origin){
+  origin:function(origin,callback){
     console.log("origin of request" + origin)
 if(whitelist.indexOf[origin] !== -1 || !origin){
   console.log("origin acceptable")
