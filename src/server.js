@@ -23,7 +23,7 @@ const server = express()
 // const older_token= jwt.sign({
 //   data: {email:"password"}
 // }, 'secret', { expiresIn: '1h' });
-const whitelist=["http://localhost:3000","http://localhost:7000","https://git.heroku.com/marverixapp.git"]
+const whitelist=["http://localhost:3000","http://localhost:7000","https://git.heroku.com/thismarv.git"]
 const corsOptions={
   origin:function(origin,callback){
     console.log("origin of request" + origin)
