@@ -42,7 +42,7 @@ const staticFolderPath = join(__dirname, ".../public")
 server.use(express.static(staticFolderPath))
 server.use(express.json())
 if (process.env.NODE_ENV === "production")
-server.use(express.static("client/builds"))
+server.use(express.static("public"))
 server.use(cors(corsOptions))
 
 server.use("/users", usersRouter)
